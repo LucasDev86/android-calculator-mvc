@@ -38,7 +38,10 @@ class MainActivity : AppCompatActivity() {
             binding.buttonPlus
         ).forEach { button ->
             button.setOnClickListener {
-                onClickButtonSetText("${binding.textView.text} ${button.text} ")
+                if(binding.textView.text.isNotEmpty()){
+                    onClickButtonSetText("${binding.textView.text} ${button.text} ")
+                }
+
             }
         }
 
