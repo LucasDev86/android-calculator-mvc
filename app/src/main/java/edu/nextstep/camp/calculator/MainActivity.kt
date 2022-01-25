@@ -55,7 +55,7 @@ class MainActivity : AppCompatActivity() {
                 val result = calculator.calculate(binding.textView.text.toString())
                 binding.textView.text = result
             } catch (e: IllegalArgumentException) {
-                Toast.makeText(this, "${e.message.toString()}", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "완성되지 않은 수식입니다", Toast.LENGTH_SHORT).show()
             }
         }
     }

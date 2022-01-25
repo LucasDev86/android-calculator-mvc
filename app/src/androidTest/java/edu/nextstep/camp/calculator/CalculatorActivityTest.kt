@@ -3,9 +3,9 @@ package edu.nextstep.camp.calculator
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.assertion.ViewAssertions.matches
-import androidx.test.espresso.matcher.ViewMatchers.withId
-import androidx.test.espresso.matcher.ViewMatchers.withText
+import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.ext.junit.rules.ActivityScenarioRule
+import edu.nextstep.camp.calculator.ToastMatcher.Companion.isToast
 import org.junit.Rule
 import org.junit.Test
 
@@ -79,16 +79,23 @@ class CalculatorActivityTest {
         // when
         onView(withId(R.id.buttonDelete)).perform(click())
 
+        // then
         onView(withId(R.id.textView)).check(matches(withText(expectedText)))
 
     }
 
     @Test
-    fun `입력된_수식이_있을_때_사용자가_지우기_버튼을_누르면_수식에_마지막으로_입력된_연산자_또는_피연산자가_지워져야_한다`(){
+    fun `입력된_수신이_완전할_때_사용자가_결과버튼을_누르면_입력된_수식의_결과가_화면에_보여야_한다`(){
 
-        val expectedText = ""
+        val expectedText = "5"
 
+        //when 3 + 2 = 5
+        onView(withId(R.id.button3)).perform(click())
+        onView(withId(R.id.buttonPlus)).perform(click())
+        onView(withId(R.id.button2)).perform(click())
+        onView(withId(R.id.buttonEquals)).perform(click())
 
+        //then
+        onView(withId(R.id.textView)).check(matches(withText(expectedText)))
     }
-
 }
